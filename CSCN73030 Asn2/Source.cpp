@@ -5,11 +5,16 @@
 #include <vector>
 using namespace std;
 
+struct STUDENT_DATA
+{
+	string firstname;
+	string lastname;
+};
+
 int main()
 {
 	fstream newfile;
-	vector<string> firstnames;
-	vector<string> lastnames;
+	vector<STUDENT_DATA> students;
 	newfile.open("C:\\Users\\Mason\\Downloads\\StudentData.txt", ios::in); //open the file
 
 	//reading the file and saving the names in the vectors
@@ -22,21 +27,22 @@ int main()
 			string first;
 			string last;
 			bool firstiteration = true;
-			
+			STUDENT_DATA student;
+
 			//parse each line
 			while (!ss.eof())
 			{
 				if (firstiteration) //if it's the first word in the string...
 				{
 					getline(ss, last, ','); 
-					lastnames.push_back(last); //put the last name in the vector 
+					student.lastname = last;
 				}
 				else //if it's not the first word in the string...
 				{
 					getline(ss, first, ',');
-					firstnames.push_back(first); //put the first name in the vector
+					student.firstname = first;
+					students.push_back(student); //put student in vector
 				}
-
 				firstiteration = false; //after it has run once, set it to false
 			}
 		}
@@ -52,8 +58,8 @@ int main()
 	//only do this in debug mode
 	for (int i = 0; i < 33; i++)
 	{
-		cout << firstnames[i] << " ";
-		cout << lastnames[i] << endl;
+		cout << students[i].firstname << " ";
+		cout << students[i].lastname << endl;
 	}
 #endif
 
