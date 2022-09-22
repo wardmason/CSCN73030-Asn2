@@ -3,7 +3,6 @@
 #include <string>
 #include <sstream>
 #include <vector>
-
 using namespace std;
 
 int main()
@@ -49,10 +48,13 @@ int main()
 		return 1;
 	}
 
+#ifdef _DEBUG
+	//only do this in debug mode
 	for (int i = 0; i < 33; i++)
 	{
 		cout << firstnames[i] << " ";
 		cout << lastnames[i] << endl;
 	}
+#endif
 
 }
